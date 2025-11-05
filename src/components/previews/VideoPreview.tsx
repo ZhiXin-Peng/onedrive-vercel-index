@@ -6,7 +6,14 @@ import { useTranslation } from 'next-i18next'
 
 import axios from 'axios'
 import toast from 'react-hot-toast'
-import Plyr from 'plyr-react'
+//import Plyr from 'plyr-react'
+import dynamic from 'next/dynamic';
+
+// 仅在浏览器端渲染 Plyr 组件，避免 SSR 触发 document
+const Plyr = dynamic(() => import('plyr-react'), { ssr: false });
+
+// 其余代码保持不变，原来 <Plyr .../> 的地方继续用
+
 import { useAsync } from 'react-async-hook'
 import { useClipboard } from 'use-clipboard-copy'
 
